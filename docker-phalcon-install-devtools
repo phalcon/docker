@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+INSTALL_VERSION=4.2.0
+
+if [ "$1" != "" ]; then
+    INSTALL_VERSION=$1
+fi
+
+echo ">>> Downloading phalcon.phar ..."
+curl -LOs https://github.com/phalcon/phalcon-devtools/releases/download/v${INSTALL_VERSION}/phalcon.phar
+chmod +x phalcon.phar
+mv phalcon.phar /usr/local/bin/phalcon
+
+echo ">>> Testing 'phalcon --version' command ..."
+phalcon --version

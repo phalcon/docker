@@ -1,0 +1,27 @@
+name: Test Dockerfiles
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  php81:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build on 8.1/Dockerfile
+        run: docker build --progress=plain --file 8.1/Dockerfile .
+
+  php80:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build on 8.0/Dockerfile
+        run: docker build --progress=plain --file 8.0/Dockerfile .
+
+  php74:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build on 7.4/Dockerfile
+        run: docker build --progress=plain --file 7.4/Dockerfile .
