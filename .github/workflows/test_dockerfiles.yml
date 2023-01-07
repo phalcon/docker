@@ -13,5 +13,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build with PHP {{ matrix.version }}
-        run: docker build --progress=plain --file {{ matrix.version }}/Dockerfile .
+      - name: Build with PHP ${{ matrix.version }}
+        run: docker build --progress=plain --file ${{ matrix.version }}/Dockerfile .
