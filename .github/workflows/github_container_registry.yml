@@ -1,0 +1,30 @@
+name: Publish GitHub Container Registry
+
+on:
+  workflow_dispatch:
+    inputs:
+      phalcon_version:
+        description: 'Framework version'
+        required: true
+        default: '5.1.4'
+
+jobs:
+  cli:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [ '7.4', '8.0', '8.1' ]
+    steps:
+      - uses: actions/checkout@master
+      - name: Build PHP ${{ matrix.version }} CLI version and publish
+        uses: elgohr/Publish-Docker-Github-Action@v4
+        env:
+          PHALCON_VERSION: ${{ github.event.inputs.phalcon_version }}
+        with:
+          name: phalcon/docker
+          tags: ${{ matrix.version }},${{ matrix.version }}-cli
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          dockerfile: ${{ matrix.version }}/Dockerfile
+          buildargs: PHALCON_VERSION
