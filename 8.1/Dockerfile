@@ -1,6 +1,6 @@
-FROM php:8.1
+FROM php:8.1-cli
 
-ARG PHALCON_VERSION=5.0.4
+ARG PHALCON_VERSION=5.2.1
 
 RUN set -xe && \
         docker-php-source extract && \

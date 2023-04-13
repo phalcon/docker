@@ -1,4 +1,4 @@
-FROM php:8.2
+FROM php:8.2-cli
 
 ARG PHALCON_VERSION=5.2.1
 

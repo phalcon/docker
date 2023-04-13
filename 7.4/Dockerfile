@@ -1,7 +1,7 @@
-FROM php:7.4
+FROM php:7.4-cli
 
 ARG PSR_VERSION=1.1.0
-ARG PHALCON_VERSION=5.0.4
+ARG PHALCON_VERSION=5.2.1
 
 RUN set -xe && \
         # Download PSR, see https://github.com/jbboehr/php-psr

@@ -6,18 +6,18 @@ on:
       phalcon_version:
         description: 'Framework version'
         required: true
-        default: '5.1.4'
+        default: '5.2.1'
 
 jobs:
   cli:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [ '7.4', '8.0', '8.1' ]
+        version: [ '7.4', '8.0', '8.1', '8.2' ]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build PHP ${{ matrix.version }} CLI version and publish
-        uses: elgohr/Publish-Docker-Github-Action@v4
+        uses: elgohr/Publish-Docker-Github-Action@v5
         env:
           PHALCON_VERSION: ${{ github.event.inputs.phalcon_version }}
         with:
