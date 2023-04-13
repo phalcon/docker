@@ -5,7 +5,7 @@ ARG PHALCON_VERSION=5.2.1
 RUN set -xe && \
         docker-php-source extract && \
         # Install ext-phalcon
-        curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
+        curl -sSLO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
         tar xzf /v${PHALCON_VERSION}.tar.gz && \
         docker-php-ext-install -j $(getconf _NPROCESSORS_ONLN) \
             /cphalcon-${PHALCON_VERSION}/build/phalcon \

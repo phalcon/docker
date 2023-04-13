@@ -1,4 +1,4 @@
-FROM php:8.2-cli-bullseye
+FROM php:8.2-cli-alpine3.17
 
 ARG PHALCON_VERSION=5.2.1
 

@@ -1,0 +1,17 @@
+name: Test Dockerfile
+
+on:
+  workflow_dispatch:
+    inputs:
+      path:
+        description: 'Path of Dockerfile'
+        required: true
+        default: '8.2'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build with PHP variant ${{ github.event.input.path }}
+        run: docker build --progress=plain --file ${{ github.event.input.path }}/Dockerfile .
