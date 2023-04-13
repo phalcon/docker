@@ -3,6 +3,7 @@ FROM php:8.2-cli-buster
 ARG PHALCON_VERSION=5.2.1
 
 RUN set -xe && \
+        cd / && \
         docker-php-source extract && \
         # Install ext-phalcon
         curl -sSLO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \

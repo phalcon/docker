@@ -4,11 +4,12 @@ ARG PSR_VERSION=1.1.0
 ARG PHALCON_VERSION=5.2.1
 
 RUN set -xe && \
+        cd / && \
         # Download PSR, see https://github.com/jbboehr/php-psr
-        curl -LO https://github.com/jbboehr/php-psr/archive/v${PSR_VERSION}.tar.gz && \
+        curl -sSLO https://github.com/jbboehr/php-psr/archive/v${PSR_VERSION}.tar.gz && \
         tar xzf /v${PSR_VERSION}.tar.gz && \
         # Download Phalcon
-        curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
+        curl -sSLO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
         tar xzf /v${PHALCON_VERSION}.tar.gz && \
         docker-php-ext-install -j $(getconf _NPROCESSORS_ONLN) \
             /php-psr-${PSR_VERSION} \
