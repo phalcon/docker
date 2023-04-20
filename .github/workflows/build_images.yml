@@ -1,0 +1,15 @@
+name: Build Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      phalcon_version:
+        description: 'Framework version'
+        required: true
+        default: '5.2.1'
+
+jobs:
+  push_github_container_register:
+    uses: ./.github/workflows/github_container_registry.yml
+    with:
+      phalcon_version: ${{ github.event.inputs.phalcon_version }}

@@ -1,25 +1,25 @@
 name: Publish GitHub Container Registry
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       phalcon_version:
         description: 'Framework version'
         required: true
-        default: '5.1.4'
+        type: string
 
 jobs:
   cli:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [ '7.4', '8.0', '8.1' ]
+        version: [ '7.4', '8.0', '8.1', '8.2' ]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Build PHP ${{ matrix.version }} CLI version and publish
-        uses: elgohr/Publish-Docker-Github-Action@v4
+        uses: elgohr/Publish-Docker-Github-Action@v5
         env:
-          PHALCON_VERSION: ${{ github.event.inputs.phalcon_version }}
+          PHALCON_VERSION: ${{ inputs.phalcon_version }}
         with:
           name: phalcon/docker
           tags: ${{ matrix.version }},${{ matrix.version }}-cli
